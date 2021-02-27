@@ -6,28 +6,37 @@ export class PotenciaController {
     @Get()
     getAll() {
         let resultado: number;
-        resultado = this.iterativo(10, 10000000);
-        
-        return resultado;
-    }
+        let numero: number = 10;
+        let n: number = 8250;
 
-
-    iterativo(numero: number, potencia: number): number {
         const jm = require('js-meter')
         const isPrint = true
         const isKb = true 
         const m = new jm({isPrint, isKb})
 
-        let resultado: number = numero;
-
-        for(let i = 1; i < potencia; i++) {
-            resultado *= numero;
-        }
-
+        resultado = this.recursivo(numero, numero, n);
+        
         m.stop();
 
         return resultado;
     }
 
+
+    iterativo(resultado: number, numero: number, potencia: number): number {
+        for(let i = 1; i < potencia; i++) {
+            resultado *= numero;
+        }
+        return resultado;
+    }
+
+    recursivo(resultado: number, numero: number, potencia: number): number {
+        resultado = resultado * numero;
+        potencia--;
+
+        if(potencia > 1) {
+            resultado = this.recursivo(resultado, numero, potencia);
+        }
+        return resultado;
+    }
 
 }
