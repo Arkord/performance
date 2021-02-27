@@ -5,23 +5,28 @@ export class PotenciaController {
 
     @Get()
     getAll() {
-        this.calcularPotencia();
-        return "ok";
+        let resultado: number;
+        resultado = this.iterativo(10, 10000000);
+        
+        return resultado;
     }
 
-    calcularPotencia() {
-        const jm = require('js-meter')
 
+    iterativo(numero: number, potencia: number): number {
+        const jm = require('js-meter')
         const isPrint = true
         const isKb = true 
-
         const m = new jm({isPrint, isKb})
 
-        for(var i=0; i<10000; i++){
-            Math.random();
+        let resultado: number = numero;
+
+        for(let i = 1; i < potencia; i++) {
+            resultado *= numero;
         }
 
-        const meter = m.stop()
+        m.stop();
+
+        return resultado;
     }
 
 
