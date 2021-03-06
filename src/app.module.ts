@@ -3,15 +3,13 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { FibonacciController } from './fibonacci/fibonacci.controller';
 import { EuclidesController } from './euclides/euclides.controller';
-import { UsuariosModule } from './usuarios/usuarios.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { ArbolesController } from './arboles/arboles.controller';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot(),
-    UsuariosModule
+    
   ],
-  controllers: [AppController, FibonacciController, EuclidesController],
+  controllers: [AppController, FibonacciController, EuclidesController, ArbolesController],
   providers: [AppService],
 })
 export class AppModule {}
