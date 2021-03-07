@@ -1,6 +1,6 @@
 import { Controller, Get, Param } from '@nestjs/common';
 import { BinarySearchTree, AvlTree } from '@datastructures-js/binary-search-tree'
-//const bst = new AvlTree();
+
 let avl = new AvlTree();
 
 @Controller('arboles')
@@ -70,7 +70,7 @@ export class ArbolesController {
 }
 
 function setAvl() {
-    for(let i: number = 0; i < 1000; i++) {
+    for(let i: number = 0; i < 100000; i++) {
         let key = i + 1;
         let value = key * 100;
         avl.insert(key,  value);
@@ -98,13 +98,16 @@ function orderDec() {
 }
 
 function height() {
-    avl.getHeight();
+    let node = avl.find(333);
+    node.getHeight();
 }
 
 function deep() {
-    avl.getLeftHeight();
+    let node = avl.find(333);
+    node = avl.getLeftHeight();
 }
 
 function level() {
-    avl.getRightHeight();
+    let node = avl.find(333);
+    node = avl.getRightHeight();
 }
