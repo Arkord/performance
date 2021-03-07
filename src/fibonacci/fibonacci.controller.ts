@@ -37,7 +37,7 @@ export class FibonacciController {
         const result = benchmark(mini);
         console.log(result); // => 14,114,886 ops/sec ±0.58% (7906233 samples)
         console.log(result.microseconds() / 1000); // => 71
-
+        console.log('Spend time : ', result.microseconds() / 1000);
         return resultado;
     }
 
