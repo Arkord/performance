@@ -76,7 +76,7 @@ function remove() {
 }
 
 function search() {
-    bst.find(333);
+    bst.find(5000);
 }
 
 function orderAsc() {

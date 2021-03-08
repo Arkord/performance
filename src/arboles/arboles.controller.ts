@@ -90,7 +90,7 @@ function remove() {
 }
 
 function search() {
-    avl.find(333);
+    avl.find(5000);
 }
 
 function orderAsc() {
