@@ -1,18 +1,18 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { BinarySearchTree, AvlTree } from '@datastructures-js/binary-search-tree'
+import { BinarySearchTree } from '@datastructures-js/binary-search-tree'
 
-let avl = new AvlTree();
+let bst = new BinarySearchTree();
 
-@Controller('arbolesAVL')
-export class ArbolesController {
+@Controller('arbolesB')
+export class ArbolesBController {
 
 
     @Get(":option")
-    avlAnalisis(@Param() params) {
+    bstAnalisis(@Param() params) {
         const option = parseInt(params.option);
         let result;
         
-        setAvl();
+        setBST();
 
         const jm = require('js-meter');
         const isPrint = true;
@@ -47,76 +47,46 @@ export class ArbolesController {
                 result = benchmark(orderDec);
             break;
             case 6:
-                height;
+                VerificarB;
                 m.stop();
-                result = benchmark(height);
-            break;
-            case 7:
-                deep;
-                m.stop();
-                result = benchmark(deep);
-            break;
-            case 8:
-                level;
-                m.stop();
-                result = benchmark(level);
-            case 9:
-                isAVL;
-                m.stop();
-                result = benchmark(isAVL);
+                result = benchmark(VerificarB);
             break;
         }
         console.log('Spend time : ', result.nanoseconds() / 1000000, "MS");
-        //console.log(avl);
+        
 
         return "Get Arboles " + params.option;
     }
 }
 
-function setAvl() {
-    for(let i: number = 0; i < 100000; i++) {
+function setBST() {
+    for(let i: number = 0; i < 10000; i++) {
         let key = i + 1;
         let value = key * 100;
-        avl.insert(key,  value);
+        bst.insert(key,  value);
     }
 }
 
 function insert() {
-    avl.insert(11,  100);
+    bst.insert(11,  100);
 }
 
 function remove() {
-    avl.remove(1);
+    bst.remove(1);
 }
 
 function search() {
-    avl.find(333);
+    bst.find(333);
 }
 
 function orderAsc() {
-    avl.traverseInOrder((node) => node.getKey());
+    bst.traverseInOrder((node) => node.getKey());
 }
 
 function orderDec() {
-    avl.traversePreOrder((node) => node.getKey());
+    bst.traversePreOrder((node) => node.getKey());
 }
 
-function height() {
-    let node = avl.find(333);
-    node.getHeight();
-}
-
-function deep() {
-    let node = avl.find(333);
-    node.getLeftHeight();
-}
-
-function level() {
-    let node = avl.find(333);
-    node.getRightHeight();
-}
-
-function isAVL() {
-    let node = avl.find(333);
-    node.calculateBalance();
+function VerificarB() {
+    bst.traversePostOrder((node) => node.getKey());
 }

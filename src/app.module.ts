@@ -4,12 +4,13 @@ import { AppService } from './app.service';
 import { FibonacciController } from './fibonacci/fibonacci.controller';
 import { EuclidesController } from './euclides/euclides.controller';
 import { ArbolesController } from './arboles/arboles.controller';
+import { ArbolesBController } from './arboles-b/arboles-b.controller';
 
 @Module({
   imports: [
     
   ],
-  controllers: [AppController, FibonacciController, EuclidesController, ArbolesController],
+  controllers: [AppController, FibonacciController, EuclidesController, ArbolesController, ArbolesBController],
   providers: [AppService],
 })
 export class AppModule {}
