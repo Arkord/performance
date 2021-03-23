@@ -1,74 +1,80 @@
 import { Controller, Get, Param } from '@nestjs/common';
-import { BinarySearchTree, AvlTree } from '@datastructures-js/binary-search-tree'
 
 @Controller('ordenamiento')
 export class OrdenamientoController {
-    n: number = 10;
-    poblacion: number[] = this.obtenerPoblacion(this.n);
-    public Kalgortimo: string;
+    n: number = 5000;
+    poblacion: number[];
+    algoritmo: string;
 
     @Get(":algoritmo")
     getAll(@Param() params) {
-        this.algortimo = params.algoritmo;
+        this.poblacion = this.obtenerPoblacion(this.n);
+        this.algoritmo = params.algoritmo;
         let resultado;
 
-        const jm = require('js-meter');
-        const isPrint = true;
-        const isKb = true;
-        const m = new jm({isPrint, isKb});
-        const benchmark = require('nodemark');
+        const perf = require('execution-time')();
 
+        //at beginning of your code
+        perf.start();
 
-        m.stop();
-        resultado = benchmark(this.ordenar);
-        // console.log('Spend time : ', resultado.nanoseconds() / 1000000, "MS");
-        // console.log(this.algortimo);
+        this.ordenar();
 
-        // return this.algortimo;
+        const results = perf.stop();
+        //at end of your code
+        console.log(results.time);
+        
+
+        return this.algoritmo;
     }
 
-    ordenar() {
+    ordenar = () => {
         let sort = require('sort-algorithms');
-        this.algortimo;
-        // switch(this.algortimo) {
-        //     case "burbuja":
-        //         console.log(sort.bubbleSort(this.poblacion));
-        //     break;
-        //     case "burbujaBidireccional":
-        //         console.log(sort.shellSort(this.poblacion));
-        //     break;
-        //     case "insercion":
-        //         console.log(sort.insertionSort(this.poblacion));
-        //     break;
-        //     case "casilleros":
-        //         console.log(sort.bucketSort(this.poblacion));
-        //     break;
-        //     case "cuentas":
-        //         console.log(sort.countingSort(this.poblacion));
-        //     break;
-        //     case "mezcla":
-        //         console.log(sort.mergeSort(this.poblacion));
-        //     break;
-        //     case "arbolBinario":
-        //         console.log(sort.quickSort(this.poblacion));
-        //     break;
-        //     case "radix":
-        //         console.log(sort.radixSortLSD(this.poblacion));
-        //     break;
-        // }
+        
+        switch(this.algoritmo) {
+            case "burbuja":
+               sort.bubbleSort(this.poblacion);
+            break;
+            case "burbujaBidireccional":
+                sort.shellSort(this.poblacion);
+            break;
+            case "insercion":
+                sort.insertionSort(this.poblacion);
+            break;
+            case "casilleros":
+                sort.bucketSort(this.poblacion);
+            break;
+            case "cuentas":
+                sort.countingSort(this.poblacion);
+            break;
+            case "mezcla":
+                sort.mergeSort(this.poblacion);
+            break;
+            case "radix":
+                sort.radixSortLSD(this.poblacion);
+            break;
+            case "shell":
+                sort.shellSort(this.poblacion);
+            break;
+            case "seleccion":
+                sort.selectionSort(this.poblacion);
+            break;
+            case "monticulos":
+                sort.heapSort(this.poblacion);
+            break;
+            case "rapido":
+                sort.quickSort(this.poblacion);
+            break;
+        }
     }
 
     obtenerPoblacion(n: number) : number[] {
         let poblacion: number[] = [];
-
-        for(let i = 0; i < n; i++) {
-            poblacion.push(this.obtenerNumero(0, 9));
+        for (let i = 0; i < n; i++) {
+            let numero = 8;//Math.floor(Math.random() * (9 - 0)) + 0;
+            poblacion.push(numero);
         }
 
         return poblacion;
     }
 
-    obtenerNumero(min, max) {
-        return Math.floor(Math.random() * (max - min)) + min;
-      }
-} 
+}

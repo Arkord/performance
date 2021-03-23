@@ -28,6 +28,7 @@
         "@nestjs/platform-express": "^7.5.1",
         "@nestjs/typeorm": "^7.1.5",
         "datastructures-js": "^9.0.0",
+        "execution-time": "^1.4.1",
         "js-meter": "^1.1.4",
         "mysql": "^2.18.1",
         "reflect-metadata": "^0.1.13",
